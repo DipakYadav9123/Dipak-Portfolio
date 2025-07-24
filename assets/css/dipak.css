@@ -1,0 +1,170 @@
+/* Modern Responsive Portfolio CSS */
+
+body {
+  font-family: 'Segoe UI', Arial, sans-serif;
+  background: #181818;
+  color: #f5f5f5;
+  margin: 0;
+  min-height: 100vh;
+}
+
+.container {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 0 1.5rem;
+}
+
+.header {
+  background: #232323;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.10);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+.nav__logo {
+  display: flex;
+  align-items: center;
+  font-weight: bold;
+  font-size: 1.2rem;
+  color: #00bcd4;
+  text-decoration: none;
+}
+
+.nav__profile-img {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  margin-right: 8px;
+}
+
+.nav__menu {
+  list-style: none;
+  display: flex;
+  gap: 2rem;
+  margin: 0;
+  padding: 1rem 0;
+}
+
+.nav__menu a {
+  color: #f5f5f5;
+  text-decoration: none;
+  font-weight: 500;
+  transition: color 0.2s;
+}
+
+.nav__menu a:hover {
+  color: #00bcd4;
+}
+
+.section {
+  padding: 3rem 0;
+}
+
+.projects__grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2rem;
+  justify-content: center;
+}
+
+.project__card {
+  background: #232323;
+  border-radius: 1rem;
+  box-shadow: 0 4px 24px rgba(0,188,212,0.08);
+  overflow: hidden;
+  width: 320px;
+  transition: box-shadow 0.2s, transform 0.2s;
+  cursor: pointer;
+  position: relative;
+}
+.project__card:hover {
+  box-shadow: 0 12px 32px rgba(0,188,212,0.18);
+  transform: scale(1.04) rotate(-1deg);
+}
+.project__flip-inner { position: relative; width: 100%; height: 100%; }
+.project__flip-front, .project__flip-back { padding: 1.5rem; }
+.project__flip-front img { width: 100%; border-radius: 0.7rem; margin-bottom: 1rem; }
+.project__flip-front h3 { font-size: 1.3rem; margin-bottom: 0.5rem; }
+.project__flip-back { background: #292929; border-radius: 0.7rem; }
+.project__flip-back p { margin-bottom: 1rem; font-size: 1rem; }
+
+.btn, .btn--small {
+  display: inline-block;
+  padding: 0.6em 1.2em;
+  border-radius: 0.5em;
+  background: #00bcd4;
+  color: #fff;
+  text-decoration: none;
+  font-weight: 500;
+  font-size: 1rem;
+  border: none;
+  cursor: pointer;
+  margin-right: 0.5em;
+  transition: background 0.2s;
+  pointer-events: auto;
+}
+.btn--small { font-size: 0.95rem; padding: 0.5em 1em; }
+.btn:hover, .btn--small:hover { background: #0097a7; color: #fff; }
+
+.project__flip-back a { pointer-events: auto !important; z-index: 2; position: relative; }
+
+.project-modal {
+  display: none;
+  position: fixed;
+  top: 0; left: 0; width: 100vw; height: 100vh;
+  background: rgba(0,0,0,0.45);
+  z-index: 9999;
+  align-items: center;
+  justify-content: center;
+}
+.project-modal.open { display: flex; }
+.project-modal__content {
+  background: #232323;
+  border-radius: 1rem;
+  padding: 2rem;
+  max-width: 420px;
+  width: 90vw;
+  position: relative;
+}
+.project-modal__close {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  background: none;
+  border: none;
+  font-size: 2rem;
+  cursor: pointer;
+  color: #00bcd4;
+}
+.project-modal__img img { width: 100%; border-radius: 0.7rem; margin-bottom: 1rem; }
+.project-modal__title { font-size: 1.3rem; margin-bottom: 0.5rem; }
+.project-modal__desc { margin-bottom: 1rem; font-size: 1rem; }
+.project-modal__links a { display: inline-block; margin-right: 0.5em; background: #00bcd4; color: #fff; padding: 0.5em 1em; border-radius: 0.4em; text-decoration: none; font-size: 0.98rem; transition: background 0.2s; }
+.project-modal__links a:hover { background: #0097a7; }
+
+/* Responsive Styles */
+@media (max-width: 900px) {
+  .container { padding: 0 0.5rem; }
+  .projects__grid { flex-direction: column; align-items: center; }
+  .project__card { width: 95vw; }
+  .section { padding: 2rem 0; }
+  .nav__menu { flex-direction: column; gap: 1rem; }
+}
+
+/* Header Responsive */
+@media (max-width: 700px) {
+  .header { padding: 0.5rem 0; }
+  .nav__logo { font-size: 1.1rem; }
+}
+
+/* Modal Responsive */
+@media (max-width: 600px) {
+  .project-modal__content { padding: 1.1rem 0.5rem 0.7rem 0.5rem; max-width: 98vw; }
+  .project-modal__title { font-size: 1.08rem; }
+  .project-modal__desc { font-size: 0.97rem; }
+}
+
+/* Scrollbar Styling */
+::-webkit-scrollbar { width: 8px; background: #232323; }
+::-webkit-scrollbar-thumb { background: #00bcd4; border-radius: 4px; } 
