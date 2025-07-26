@@ -3,25 +3,12 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Dipak Yadav | Full Stack Developer Portfolio</title>
-  <meta name="description" content="Portfolio of Dipak Yadav - Full Stack Developer, BCA Final Year Student. Explore projects, skills, certificates, and contact information.">
-  <meta name="author" content="Dipak Yadav">
-  <meta property="og:title" content="Dipak Yadav | Full Stack Developer Portfolio">
-  <meta property="og:description" content="Portfolio of Dipak Yadav - Full Stack Developer, BCA Final Year Student. Explore projects, skills, certificates, and contact information.">
-  <meta property="og:type" content="website">
-  <meta property="og:image" content="WhatsApp Image 2025-02-28 at 23.58.34_9f0f37dd.jpg">
-  <meta property="og:url" content="https://your-portfolio-url.com/">
-  <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="Dipak Yadav | Full Stack Developer Portfolio">
-  <meta name="twitter:description" content="Portfolio of Dipak Yadav - Full Stack Developer, BCA Final Year Student. Explore projects, skills, certificates, and contact information.">
-  <meta name="twitter:image" content="WhatsApp Image 2025-02-28 at 23.58.34_9f0f37dd.jpg">
-  <link rel="icon" type="image/png" href="assets/img/WhatsApp Image 2025-02-28 at 23.58.34_9f0f37dd.jpg">
+  <title>Modern Responsive Portfolio</title>
   <link rel="stylesheet" href="assets/css/dipak.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
 </head>
 <body>
-  <!-- Scroll Progress Bar -->
-  <div id="scrollProgressBar"></div>
+  <div class="scroll-bg-effect"></div>
   <!-- Loader Start -->
   <div id="loader" class="loader-wrapper">
     <div class="loader"></div>
@@ -30,32 +17,27 @@
   <!--==================== HEADER ====================-->
   <header class="header" id="header">
     <nav class="nav container">
-      <a href="#home" class="nav__logo">
-        <img src="assets/img/WhatsApp Image 2025-02-28 at 23.58.34_9f0f37dd.jpg" alt="Dipak" class="nav__profile-img" loading="lazy" />
+      <a href="index.html" class="nav__logo">
+        <img src="assets/img/WhatsApp Image 2025-02-28 at 23.58.34_9f0f37dd.jpg" alt="Dipak" class="nav__profile-img" />
         MyPortfolio
       </a>
       <ul class="nav__menu">
         <li><a href="#home">Home</a></li>
         <li><a href="#about">About</a></li>
         <li><a href="#skills">Skills</a></li>
+        <li><a href="#services">Services</a></li>
         <li><a href="#projects">Projects</a></li>
         <li><a href="#internship">Certificates</a></li>
         <li><a href="#contact">Contact</a></li>
       </ul>
-      <button class="nav__toggle" id="navToggle" title="Menu">
-        <i class="fas fa-bars"></i>
-      </button>
-      <button id="darkModeToggle" class="darkmode-toggle" title="Toggle dark mode">
-        <span id="darkModeIcon">🌙</span>
-      </button>
-      <button id="fontSwitcher" class="font-switcher-toggle" title="Toggle font style">Aa</button>
+      <!-- Removed hamburger menu icon -->
     </nav>
   </header>
 
   <!--==================== MAIN ====================-->
   <main class="main">
     <!--==================== HOME ====================-->
-    <section class="home section" id="home">
+    <section class="home section reveal" id="home">
       <div class="container home__container">
         <div class="home__content">
           <h1 class="home__heading">
@@ -74,19 +56,20 @@
           </div>
         </div>
         <div class="home__img">
-          <img src="assets/img/WhatsApp Image 2025-02-28 at 23.58.34_9f0f37dd.jpg" alt="Profile" class="home__img-main" loading="lazy" />
+          <div class="home__img-circle">
+            <img src="assets/img/WhatsApp Image 2025-02-28 at 23.58.34_9f0f37dd.jpg" alt="Profile" class="home__img-main" />
+          </div>
         </div>
       </div>
     </section>
 
     <!--==================== ABOUT ====================-->
-    <div class="section-divider">
-      <svg viewBox="0 0 1440 90" fill="none" xmlns="http://www.w3.org/2000/svg" class="svg-divider"><path d="M0,60 C360,120 1080,0 1440,60 L1440,90 L0,90 Z" fill="currentColor"/></svg>
-    </div>
-    <section class="about section" id="about">
+    <section class="about section reveal" id="about">
       <div class="container about__container">
         <div class="about__dp">
-          <img src="assets/img/WhatsApp Image 2025-02-28 at 23.58.34_9f0f37dd.jpg" alt="Dipak Yadav" class="about__dp-img" loading="lazy" />
+          <div class="about__img-circle">
+            <img src="assets/img/WhatsApp Image 2025-02-28 at 23.58.34_9f0f37dd.jpg" alt="Dipak Yadav" class="about__dp-img" />
+          </div>
         </div>
         <div class="about__info">
           <h2>About Me</h2>
@@ -107,46 +90,43 @@
     </section>
 
     <!--==================== SKILLS ====================-->
-    <div class="section-divider">
-      <svg viewBox="0 0 1440 90" fill="none" xmlns="http://www.w3.org/2000/svg" class="svg-divider"><path d="M0,60 C360,120 1080,0 1440,60 L1440,90 L0,90 Z" fill="currentColor"/></svg>
-    </div>
-    <section class="skills section" id="skills">
+    <section class="skills section reveal" id="skills">
       <div class="container skills__container">
         <h2>Skills</h2>
         <p class="skills__desc">
           <strong>My creative skills & experiences.</strong><br>
           I'm a passionate Full Stack Developer skilled in building responsive websites with a focus on clean design and performance. I have hands-on experience with HTML, CSS, JavaScript, PHP, and MySQL. I’ve created live projects such as a Weather App, Portfolio Website, and a dynamic CRUD system with login authentication. Currently, I’m doing a professional internship where I’m exploring real-world tools like GitHub, EmailJS, AOS animations, and deploying projects online. I love combining creativity with logic to develop user-friendly interfaces, and I constantly push myself to learn new technologies and frameworks that enhance my productivity as a developer.
         </p>
-        <div class="skills__bars">
-          <div class="skill__bar">
+        <div class="skills__cards">
+          <div class="skill__card">
+            <i class="fab fa-html5 skill__icon"></i>
             <span class="skill__name">HTML</span>
-            <div class="skill__progress"><div class="skill__fill" style="width:95%"></div></div>
-            <span class="skill__percent" data-count="95">0%</span>
+            <span class="skill__percent">95%</span>
           </div>
-          <div class="skill__bar">
+          <div class="skill__card">
+            <i class="fab fa-css3-alt skill__icon"></i>
             <span class="skill__name">CSS</span>
-            <div class="skill__progress"><div class="skill__fill" style="width:90%"></div></div>
-            <span class="skill__percent" data-count="90">0%</span>
+            <span class="skill__percent">90%</span>
           </div>
-          <div class="skill__bar">
+          <div class="skill__card">
+            <i class="fab fa-js-square skill__icon"></i>
             <span class="skill__name">JavaScript</span>
-            <div class="skill__progress"><div class="skill__fill" style="width:85%"></div></div>
-            <span class="skill__percent" data-count="85">0%</span>
+            <span class="skill__percent">85%</span>
           </div>
-          <div class="skill__bar">
+          <div class="skill__card">
+            <i class="fab fa-python skill__icon"></i>
             <span class="skill__name">Python</span>
-            <div class="skill__progress"><div class="skill__fill" style="width:80%"></div></div>
-            <span class="skill__percent" data-count="80">0%</span>
+            <span class="skill__percent">80%</span>
           </div>
-          <div class="skill__bar">
+          <div class="skill__card">
+            <i class="fas fa-database skill__icon"></i>
             <span class="skill__name">MySQL</span>
-            <div class="skill__progress"><div class="skill__fill" style="width:75%"></div></div>
-            <span class="skill__percent" data-count="75">0%</span>
+            <span class="skill__percent">75%</span>
           </div>
-          <div class="skill__bar">
+          <div class="skill__card">
+            <i class="fas fa-code skill__icon"></i>
             <span class="skill__name">C Programming</span>
-            <div class="skill__progress"><div class="skill__fill" style="width:70%"></div></div>
-            <span class="skill__percent" data-count="70">0%</span>
+            <span class="skill__percent">70%</span>
           </div>
         </div>
       </div>
@@ -154,26 +134,23 @@
 
 
     <!--==================== SERVICES ====================-->
-    <div class="section-divider">
-      <svg viewBox="0 0 1440 90" fill="none" xmlns="http://www.w3.org/2000/svg" class="svg-divider"><path d="M0,60 C360,120 1080,0 1440,60 L1440,90 L0,90 Z" fill="currentColor"/></svg>
-    </div>
-    <section class="services section" id="services">
+    <section class="services section reveal" id="services">
       <div class="container services__container">
         <h2>Services</h2>
         <div class="services__grid">
-          <div class="service__card">
+          <div class="service__card reveal">
             <i class="fab fa-html5 service__icon"></i>
             <h3>Custom Portfolio Website Design</h3>
             <p>Personalized and responsive websites using HTML, CSS & JavaScript.<br>
             Includes animations, loaders, modals, and scroll effects.</p>
           </div>
-          <div class="service__card">
+          <div class="service__card reveal">
             <i class="fab fa-js-square service__icon"></i>
             <h3>Frontend Web Development</h3>
             <p>Pixel-perfect UI development with cross-browser compatibility.<br>
             Smooth interactions using vanilla JavaScript (no frameworks).</p>
           </div>
-          <div class="service__card">
+          <div class="service__card reveal">
             <i class="fab fa-css3-alt service__icon"></i>
             <h3>Basic Web Animation & Effects</h3>
             <p>Add scroll animations, hover effects, typing animations, and more.<br>
@@ -184,37 +161,26 @@
     </section>
 
     <!--==================== PROJECTS ====================-->
-    <div class="section-divider">
-      <svg viewBox="0 0 1440 90" fill="none" xmlns="http://www.w3.org/2000/svg" class="svg-divider"><path d="M0,60 C360,120 1080,0 1440,60 L1440,90 L0,90 Z" fill="currentColor"/></svg>
-    </div>
-    <section class="projects section" id="projects">
+    <section class="projects section reveal" id="projects">
       <div class="container projects__container">
         <h2>Projects</h2>
         <div class="projects__grid">
-          <div class="project__card project__flip-card">
-            <div class="project__flip-inner">
-              <div class="project__flip-front">
-                <img src="assets/img/WhatsApp Image 2025-02-28 at 23.58.34_9f0f37dd.jpg" alt="Project 1" loading="lazy" />
-                <h3>Portfolio Website</h3>
-              </div>
-              <div class="project__flip-back">
-                <p>This is my personal portfolio website, designed and developed by me to showcase my skills, projects, certificates, and contact information. Built with HTML, CSS, and JavaScript, it features a modern responsive design, animated sections, project showcases, certificates, and a contact form. The site demonstrates my ability to create elegant, user-friendly, and interactive web experiences from scratch.</p>
-                <a href="#" class="btn btn--small">Live Demo</a>
-                <a href="#" class="btn btn--small">GitHub</a>
-              </div>
+          <div class="project__card reveal">
+            <img src="assets/img/Screenshot 2025-07-24 015105.png" alt="Portfolio" />
+            <h3>Portfolio</h3>
+            <p>A modern, responsive personal portfolio website to showcase my skills, projects, and contact details.</p>
+            <div class="project__btns">
+              <a href="#" class="btn btn--small">Live Demo</a>
+              <a href="#" class="btn btn--small">GitHub</a>
             </div>
           </div>
-          <div class="project__card project__flip-card">
-            <div class="project__flip-inner">
-              <div class="project__flip-front">
-                <img src="assets/img/Screenshot 2025-07-14 160119.png" alt="Weather App Screenshot" loading="lazy" />
-                <h3>Weather App</h3>
-              </div>
-              <div class="project__flip-back">
-                <p>Weather App: Get real-time weather updates for any city using OpenWeatherMap API. Responsive UI, search, and weather icons included.</p>
-                <a href="https://dipakyadav9123.github.io/Weather-App/" class="btn btn--small" target="_blank">Live Demo</a>
-                <a href="https://github.com/DipakYadav9123/Weather-App" class="btn btn--small" target="_blank">GitHub</a>
-              </div>
+          <div class="project__card reveal">
+            <img src="assets/img/Screenshot 2025-07-14 160119.png" alt="Weather App Screenshot" />
+            <h3>Weather App</h3>
+            <p>Weather App: Get real-time weather updates for any city using OpenWeatherMap API. Responsive UI, search, and weather icons included.</p>
+            <div class="project__btns">
+              <a href="https://dipakyadav9123.github.io/Weather-App/" class="btn btn--small" target="_blank">Live Demo</a>
+              <a href="https://github.com/DipakYadav9123/Weather-App" class="btn btn--small" target="_blank">GitHub</a>
             </div>
           </div>
         </div>
@@ -222,17 +188,14 @@
     </section>
 
     <!--==================== INTERNSHIP ====================-->
-    <div class="section-divider">
-      <svg viewBox="0 0 1440 90" fill="none" xmlns="http://www.w3.org/2000/svg" class="svg-divider"><path d="M0,60 C360,120 1080,0 1440,60 L1440,90 L0,90 Z" fill="currentColor"/></svg>
-    </div>
-    <section class="internship section" id="internship">
+    <section class="internship section reveal" id="internship">
   <div class="container internship__container">
     <h2>Certificates</h2>
-    <p>Here you can see my certificates:</p>
+    <p class="certificates__subtitle">My achievements and learning milestones</p>
     <div class="certificates__grid">
-      <div class="certificate__card">
-        <img src="assets/img/be10x-ai-tools-workshop-certificate-dipak-yadav.jpg" alt="BE10x Certificate" width="100%" loading="lazy" />
-
+      <div class="certificate__card reveal">
+        <div class="ribbon">Verified</div>
+        <img src="assets/img/be10x-ai-tools-workshop-certificate-dipak-yadav.jpg" alt="BE10x Certificate" width="100%" />
         <h3>Be10x - AI Tools Workshop</h3>
         <a href="assets/img/be10x-ai-tools-workshop-certificate-dipak-yadav.jpg" class="btn btn--small" target="_blank">View Certificate</a>
       </div>
@@ -242,10 +205,7 @@
 
 
     <!--==================== CONTACT ====================-->
-    <div class="section-divider">
-      <svg viewBox="0 0 1440 90" fill="none" xmlns="http://www.w3.org/2000/svg" class="svg-divider"><path d="M0,60 C360,120 1080,0 1440,60 L1440,90 L0,90 Z" fill="currentColor"/></svg>
-    </div>
-    <section class="contact section" id="contact">
+    <section class="contact section reveal" id="contact">
       <div class="container contact__container">
         <h2>Contact</h2>
         <div class="get-in-touch">
@@ -278,21 +238,22 @@
     </div>
   </footer>
 
-  <!-- Scroll to Top Button -->
-  <button id="scrollTopBtn" class="scroll-top-btn" title="Scroll to top" aria-label="Scroll to top">
-    <svg width="28" height="28" viewBox="0 0 24 24" fill="none"><path d="M12 19V5M12 5l-7 7M12 5l7 7" stroke="#00bcd4" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-  </button>
-  <!-- Project Modal Popup -->
-  <div id="projectModal" class="project-modal" aria-modal="true" role="dialog" tabindex="-1" style="display:none;">
-    <div class="project-modal__overlay" id="projectModalOverlay"></div>
-    <div class="project-modal__content" role="document">
-      <button class="project-modal__close" id="projectModalClose" aria-label="Close project details">&times;</button>
-      <div class="project-modal__img" id="projectModalImg"></div>
-      <h3 class="project-modal__title" id="projectModalTitle"></h3>
-      <div class="project-modal__desc" id="projectModalDesc"></div>
-      <div class="project-modal__links" id="projectModalLinks"></div>
-    </div>
+  <!-- ===== AI ChatBot Floating Button & Modal ===== -->
+<button id="chatbotToggle" style="position:fixed;bottom:32px;right:32px;z-index:9999;background:#00bcd4;color:#fff;border:none;border-radius:50%;width:56px;height:56px;box-shadow:0 4px 16px #00bcd488;cursor:pointer;font-size:2rem;display:flex;align-items:center;justify-content:center;transition:background 0.2s;">
+  <span aria-label="Open ChatBot">💬</span>
+</button>
+<div id="chatbotModal" style="display:none;position:fixed;bottom:100px;right:32px;z-index:10000;width:340px;max-width:95vw;background:#232323;color:#fff;border-radius:1.2rem;box-shadow:0 8px 32px #00bcd4cc;padding:0;overflow:hidden;flex-direction:column;">
+  <div style="background:#00bcd4;padding:1rem 1.2rem;font-weight:bold;font-size:1.1rem;display:flex;align-items:center;justify-content:space-between;">
+    <span>AI ChatBot</span>
+    <button id="chatbotClose" style="background:none;border:none;color:#fff;font-size:1.3rem;cursor:pointer;">&times;</button>
   </div>
+  <div id="chatbotMessages" style="padding:1rem;height:260px;overflow-y:auto;font-size:1rem;background:#232323;"></div>
+  <form id="chatbotForm" style="display:flex;border-top:1px solid #00bcd4;background:#232323;">
+    <input id="chatbotInput" type="text" placeholder="Type your message..." autocomplete="off" style="flex:1;padding:0.7rem 1rem;border:none;background:#181818;color:#fff;font-size:1rem;outline:none;" required />
+    <button type="submit" style="background:#00bcd4;color:#fff;border:none;padding:0 1.2rem;font-size:1.1rem;cursor:pointer;">Send</button>
+  </form>
+</div>
+
   <!--=============== MAIN JS ===============-->
   <!-- EmailJS SDK -->
   <!-- Removed invalid FontAwesome kit script, using CDN in <head> -->
@@ -300,3 +261,5 @@
   <script src="assets/js/main.js"></script>
 </body>
 </html>
+
+

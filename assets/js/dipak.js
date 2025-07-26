@@ -43,12 +43,5 @@ document.addEventListener('DOMContentLoaded', function() {
     });
   }
 
-  // Hamburger menu toggle
-  const navToggle = document.getElementById('navToggle');
-  const navMenu = document.querySelector('.nav__menu');
-  if(navToggle && navMenu) {
-    navToggle.addEventListener('click', function() {
-      navMenu.classList.toggle('active');
-    });
-  }
+  // Hamburger menu functionality removed - navbar is now simple horizontal menu
 });

@@ -29,12 +29,14 @@ document.addEventListener('DOMContentLoaded', function() {
     let isErasing = false;
     function aboutTypeEffect() {
       const aboutText = aboutTexts[aboutIndex];
+      // Add blinking cursor span
+      const cursor = '<span class="animated-cursor">|</span>';
       if (!isErasing && i <= aboutText.length) {
-        aboutEl.textContent = aboutText.substring(0, i);
+        aboutEl.innerHTML = aboutText.substring(0, i) + cursor;
         i++;
         setTimeout(aboutTypeEffect, 90);
       } else if (isErasing && i >= 0) {
-        aboutEl.textContent = aboutText.substring(0, i);
+        aboutEl.innerHTML = aboutText.substring(0, i) + cursor;
         i--;
         setTimeout(aboutTypeEffect, 40);
       } else {
@@ -58,12 +60,14 @@ document.addEventListener('DOMContentLoaded', function() {
     let isErasing = false;
     function typeEffect() {
       const text = texts[textIndex];
+      // Add blinking cursor span
+      const cursor = '<span class="animated-cursor">|</span>';
       if (!isErasing && i <= text.length) {
-        el.textContent = text.substring(0, i);
+        el.innerHTML = text.substring(0, i) + cursor;
         i++;
         setTimeout(typeEffect, 90);
       } else if (isErasing && i >= 0) {
-        el.textContent = text.substring(0, i);
+        el.innerHTML = text.substring(0, i) + cursor;
         i--;
         setTimeout(typeEffect, 40);
       } else {
@@ -112,34 +116,26 @@ document.addEventListener('DOMContentLoaded', function() {
   window.addEventListener('scroll', handleNavScroll);
   handleNavScroll(); // run on load
 
-  // Hamburger menu toggle
-  const navToggle = document.getElementById('navToggle');
-  const navMenu = document.querySelector('.nav__menu');
-  if(navToggle && navMenu) {
-    navToggle.addEventListener('click', function() {
-      navMenu.classList.toggle('active');
-    });
-  }
+  // Hamburger menu functionality removed - navbar is now simple horizontal menu
 
-  // Dark mode toggle logic
-  const toggle = document.getElementById('darkModeToggle');
-  const icon = document.getElementById('darkModeIcon');
-  function setDarkMode(on) {
-    if(on) {
-      document.body.classList.add('darkmode');
-      icon.textContent = '☀️';
-      localStorage.setItem('darkmode', 'on');
-    } else {
-      document.body.classList.remove('darkmode');
-      icon.textContent = '🌙';
-      localStorage.setItem('darkmode', 'off');
-    }
-  }
-  // Initial mode
-  setDarkMode(localStorage.getItem('darkmode') === 'on');
-  toggle.addEventListener('click', () => {
-    setDarkMode(!document.body.classList.contains('darkmode'));
-  });
+  // REMOVE dark mode toggle logic
+  // const toggle = document.getElementById('darkModeToggle');
+  // const icon = document.getElementById('darkModeIcon');
+  // function setDarkMode(on) {
+  //   if(on) {
+  //     document.body.classList.add('darkmode');
+  //     icon.textContent = '☀️';
+  //     localStorage.setItem('darkmode', 'on');
+  //   } else {
+  //     document.body.classList.remove('darkmode');
+  //     icon.textContent = '🌙';
+  //     localStorage.setItem('darkmode', 'off');
+  //   }
+  // }
+  // setDarkMode(localStorage.getItem('darkmode') === 'on');
+  // toggle.addEventListener('click', () => {
+  //   setDarkMode(!document.body.classList.contains('darkmode'));
+  // });
 
   // EmailJS integration for contact form
   var form = document.querySelector('.contact__form');
@@ -214,6 +210,49 @@ document.addEventListener('DOMContentLoaded', function() {
     }
   }
   document.addEventListener('DOMContentLoaded', revealOnScroll);
+
+  // Scroll Reveal Animations (AOS-like, with requestAnimationFrame)
+  const revealEls = document.querySelectorAll('.reveal');
+  const revealState = new WeakMap();
+  function animateReveal(el, show) {
+    let start = null;
+    let from = show ? 0 : 1;
+    let to = show ? 1 : 0;
+    let fromY = show ? 60 : 0;
+    let toY = show ? 0 : 60;
+    function step(ts) {
+      if (!start) start = ts;
+      let progress = Math.min((ts - start) / 600, 1);
+      let ease = progress < 0.5 ? 2*progress*progress : -1+(4-2*progress)*progress;
+      let val = from + (to - from) * ease;
+      let y = fromY + (toY - fromY) * ease;
+      el.style.opacity = val;
+      el.style.transform = `translateY(${y}px) scale(${0.98 + 0.02*val})`;
+      if (progress < 1) {
+        revealState.set(el, requestAnimationFrame(step));
+      } else {
+        el.style.opacity = to;
+        el.style.transform = show ? 'none' : `translateY(60px) scale(0.98)`;
+        revealState.delete(el);
+      }
+    }
+    if (revealState.has(el)) cancelAnimationFrame(revealState.get(el));
+    requestAnimationFrame(step);
+  }
+  const revealObserver = new window.IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        animateReveal(entry.target, true);
+      } else {
+        animateReveal(entry.target, false);
+      }
+    });
+  }, { threshold: 0.18 });
+  revealEls.forEach(el => {
+    el.style.opacity = 0;
+    el.style.transform = 'translateY(60px) scale(0.98)';
+    revealObserver.observe(el);
+  });
 
   // 3. Scroll Progress Bar (requestAnimationFrame)
   var scrollBar = document.getElementById('scrollProgressBar');
@@ -374,6 +413,25 @@ document.addEventListener('DOMContentLoaded', function() {
     requestUpdate();
   })();
 
+  // Animated Scrolling Camera Simulation (parallax background)
+  const scrollBg = document.querySelector('.scroll-bg-effect');
+  let lastScrollY = 0;
+  function animateBgParallax() {
+    const scrollY = window.scrollY;
+    // Calculate a value between 40% and 60% for background-position based on scroll
+    const y = 40 + (scrollY / (document.body.scrollHeight - window.innerHeight)) * 20;
+    if (scrollBg) {
+      scrollBg.style.backgroundPosition = `50% ${y}%`;
+    }
+  }
+  function onScrollBg() {
+    if (lastScrollY !== window.scrollY) {
+      lastScrollY = window.scrollY;
+      requestAnimationFrame(animateBgParallax);
+    }
+  }
+  window.addEventListener('scroll', onScrollBg);
+
   // 9. Sticky Header with Scroll Hide/Show
   (function() {
     var header = document.querySelector('.header');
@@ -528,40 +586,7 @@ document.addEventListener('DOMContentLoaded', function() {
   })();
 
   // 13. Typewriter/Animated Text in Hero
-  (function() {
-    var el = document.getElementById('animatedRole');
-    if (!el) return;
-    var texts = ["Full Stack Developer", "BCA Final Year Student"];
-    var textIndex = 0;
-    var i = 0;
-    var isErasing = false;
-    var cursor = document.createElement('span');
-    cursor.className = 'typewriter-cursor';
-    cursor.textContent = '|';
-    el.parentNode.appendChild(cursor);
-    function typeEffect() {
-      var text = texts[textIndex];
-      if (!isErasing && i <= text.length) {
-        el.textContent = text.substring(0, i);
-        i++;
-        setTimeout(typeEffect, 90);
-      } else if (isErasing && i >= 0) {
-        el.textContent = text.substring(0, i);
-        i--;
-        setTimeout(typeEffect, 40);
-      } else {
-        if (!isErasing) {
-          isErasing = true;
-          setTimeout(typeEffect, 1200);
-        } else {
-          isErasing = false;
-          textIndex = (textIndex + 1) % texts.length;
-          setTimeout(typeEffect, 600);
-        }
-      }
-    }
-    typeEffect();
-  })();
+  // (Removed duplicate typewriter animation for #animatedRole to prevent vibration)
 
   // 14. Contact Form Validation (frontend)
   (function() {
@@ -619,5 +644,111 @@ document.addEventListener('DOMContentLoaded', function() {
     if (localStorage.getItem('fontMode') === 'serif') setFont('serif');
   })();
 
-  // (AI ChatBot logic ka pura block hata diya gaya)
+  // ===== AI ChatBot Logic =====
+  (function(){
+    const chatbotToggle = document.getElementById('chatbotToggle');
+    const chatbotModal = document.getElementById('chatbotModal');
+    const chatbotClose = document.getElementById('chatbotClose');
+    const chatbotForm = document.getElementById('chatbotForm');
+    const chatbotInput = document.getElementById('chatbotInput');
+    const chatbotMessages = document.getElementById('chatbotMessages');
+
+    // Predefined Q&A for smart responses
+    const qa = [
+      {
+        q: /project|best project|example/i,
+        a: `Dipak's best project is his Weather App. It gives real-time weather updates for any city, with a beautiful UI and API integration. Try the <a href='https://dipakyadav9123.github.io/Weather-App/' target='_blank'>Live Demo</a>!`
+      },
+      {
+        q: /language|coding|programming/i,
+        a: 'Dipak codes in HTML, CSS, JavaScript, Python, MySQL, C, and PHP.'
+      },
+      {
+        q: /full[- ]?stack|backend|front[- ]?end/i,
+        a: 'Yes, Dipak is an aspiring Full Stack Developer with experience in both frontend and backend.'
+      },
+      {
+        q: /linkedin|profile/i,
+        a: `Here is Dipak’s LinkedIn: <a href='https://www.linkedin.com/in/dipak-yadav-b14a35365' target='_blank'>View Profile</a>`
+      },
+      {
+        q: /freelance|hire|available/i,
+        a: 'Yes, Dipak is open to freelance and internship opportunities! You can contact him via the form or WhatsApp.'
+      },
+      {
+        q: /relocat|remote|work from home/i,
+        a: 'Dipak is open to both relocation and remote jobs. Feel free to reach out!'
+      },
+      {
+        q: /unique|special|different/i,
+        a: 'Dipak’s portfolio features a modern design, animated effects, a custom scrollbar, and direct contact options.'
+      },
+      {
+        q: /rate|skill|how good/i,
+        a: 'Dipak’s coding skills are rated 8.5/10 based on his portfolio and project variety.'
+      },
+      {
+        q: /technology|tech|favourite|love/i,
+        a: 'Dipak loves working with HTML, CSS, JavaScript, and modern web tools like GitHub and EmailJS.'
+      },
+      {
+        q: /about|yourself|who are you|dipak/i,
+        a: `Dipak Yadav is a passionate Full Stack Developer, BCA student, and web enthusiast. He builds modern, responsive websites and is always eager to learn new things!`
+      },
+      {
+        q: /contact|email|reach/i,
+        a: 'You can contact Dipak using the form on this website, via WhatsApp, or through LinkedIn.'
+      },
+      {
+        q: /certificate|achievement|award/i,
+        a: 'Dipak has a verified Be10x AI Tools Workshop certificate and more coming soon!'
+      },
+      {
+        q: /cv|resume/i,
+        a: 'You can download Dipak’s CV from the About section.'
+      },
+      {
+        q: /.*/,
+        a: 'I am Dipak’s AI ChatBot! Ask me anything about Dipak or this website.'
+      }
+    ];
+
+    function addMessage(msg, from) {
+      const div = document.createElement('div');
+      div.style.margin = '0.5em 0';
+      div.style.textAlign = from === 'user' ? 'right' : 'left';
+      div.innerHTML = `<span style="display:inline-block;padding:0.5em 1em;border-radius:1em;background:${from==='user'?'#00bcd4':'#232323'};color:${from==='user'?'#fff':'#fff'};max-width:80%;word-break:break-word;">${msg}</span>`;
+      chatbotMessages.appendChild(div);
+      chatbotMessages.scrollTop = chatbotMessages.scrollHeight;
+    }
+
+    function getAnswer(q) {
+      for (let i = 0; i < qa.length; i++) {
+        if (qa[i].q.test(q)) return qa[i].a;
+      }
+      return qa[qa.length-1].a;
+    }
+
+    chatbotToggle.onclick = function() {
+      chatbotModal.style.display = 'flex';
+      setTimeout(()=>chatbotInput.focus(), 200);
+      if(chatbotMessages.childElementCount===0) {
+        addMessage('Hi! I am Dipak’s AI ChatBot. Ask me anything about Dipak or this website.', 'bot');
+      }
+    };
+    chatbotClose.onclick = function() {
+      chatbotModal.style.display = 'none';
+    };
+    chatbotForm.onsubmit = function(e) {
+      e.preventDefault();
+      const userMsg = chatbotInput.value.trim();
+      if(!userMsg) return;
+      addMessage(userMsg, 'user');
+      setTimeout(()=>{
+        const botMsg = getAnswer(userMsg);
+        addMessage(botMsg, 'bot');
+      }, 500);
+      chatbotInput.value = '';
+    };
+  })();
 }); 
